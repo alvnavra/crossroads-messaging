@@ -13,6 +13,10 @@ app.get('/', (req, res) => {
 
 io.on('connection', (socket)=>{
     console.log('a user connected')
+    socket.on('my message', (msg)=>{
+      console.log(`message: ${msg}`)
+      io.emit('my broadcast', `server: ${msg}`);
+    })
     socket.on('disconnect', ()=>{
         console.log('a user disconected')
     })
