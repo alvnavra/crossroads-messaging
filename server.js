@@ -23,6 +23,10 @@ io.on('connection', (socket)=>{
     socket.on('disconnect', ()=>{
         console.log('a user disconected')
     })
+    socket.on('reset', ()=>{
+      this.answers = {}
+      io.emit('reset-answers', this.answers)
+    })
     socket.on('player_answer',(answer) => {
       let resp = {id_question:answer.id_question, answer:answer.answwer}
       console.log(answer)
