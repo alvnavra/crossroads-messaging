@@ -24,8 +24,8 @@ io.on('connection', (socket)=>{
         console.log('a user disconected')
     })
     socket.on('reset', ()=>{
-      this.answers = {}
-      io.emit('reset-answers', this.answers)
+      answers = {}
+      io.emit('reset-answers', answers)
     })
     socket.on('player_answer',(answer) => {
       let resp = {id_question:answer.id_question, answer:answer.answwer}
@@ -45,7 +45,7 @@ io.on('connection', (socket)=>{
           console.log(answers[answer.nickname])
           while(i < answers[answer.nickname].length)
           {
-            if (this.answers[answer.nickname][i]['id_question']==p_answer.id_question) 
+            if (answers[answer.nickname][i]['id_question']==p_answer.id_question) 
             {
               return i
             }
@@ -59,10 +59,10 @@ io.on('connection', (socket)=>{
         if (idx >= 0) 
         {
             
-            this.answers[answer.nickname][idx] = resp
+            answers[answer.nickname][idx] = resp
         }
-        else this.answers[answer.nickname].push(resp)
-        console.log(this.answers)
+        else answers[answer.nickname].push(resp)
+        console.log(answers)
       }
       else {
         answers[answer.nickname] = [resp]
