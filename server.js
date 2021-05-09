@@ -45,7 +45,7 @@ io.on('connection', (socket)=>{
           console.log(answers[answer.nickname])
           while(i < answers[answer.nickname].length)
           {
-            if (answers[answer.nickname][i]['id_question']==p_answer.id_question) 
+            if (this.answers[answer.nickname][i]['id_question']==p_answer.id_question) 
             {
               return i
             }
@@ -59,10 +59,10 @@ io.on('connection', (socket)=>{
         if (idx >= 0) 
         {
             
-            answers[answer.nickname][idx] = resp
+            this.answers[answer.nickname][idx] = resp
         }
-        else answers[answer.nickname].push(resp)
-        console.log(answers)
+        else this.answers[answer.nickname].push(resp)
+        console.log(this.answers)
       }
       else {
         answers[answer.nickname] = [resp]
